@@ -1,0 +1,12 @@
+<div class="editor-container">
+  <div contenteditable
+       (input)="onTitleChange($any($event.target).innerText)"
+       [innerHTML]="editableNote.name"
+       class="title mat-h1">
+  </div>
+  <div
+    (input)="onContentChange($any($event.target).innerHTML)"
+    [innerHTML]="editableNote.content"
+    contenteditable class="content">
+  </div>
+</div>

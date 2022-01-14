@@ -1,0 +1,51 @@
+<div class="grid-container">
+  <div class="main-container">
+    <mat-grid-list cols="12" rowHeight="100%">
+      <mat-grid-tile colspan="3" rowspan="1">
+        <div class="list-container">
+          <div class="search-container">
+            <div class="search-input">
+              <mat-form-field appearance="outline" style="width: 100%">
+                <mat-label>Search</mat-label>
+                <input autocomplete="off" matInput type="text" [(ngModel)]="searchName" (keyup)="searchByName($any($event.target).value)">
+                <button *ngIf="searchName" matSuffix mat-icon-button aria-label="Clear" (click)="searchName=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="add-btn" style="padding: 0 12px">
+              <button mat-fab color="accent" routerLink="/">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="notes-list-container">
+            <mat-nav-list>
+              <mat-list-item *ngFor="let note of notes" routerLink="/{{note.id}}" routerLinkActive="mat-menu-item-highlighted">
+                <div mat-line>
+                  <h2 class="mat-h2" style="margin: 0">{{note.name}}</h2>
+                </div>
+                <small mat-line>{{note.updated_at | date: 'medium'}}</small>
+                <button mat-icon-button (click)="deleteNote(note); $event.stopPropagation()">
+                  <mat-icon class="mat-24">close</mat-icon>
+                </button>
+              </mat-list-item>
+            </mat-nav-list>
+
+          </div>
+          <div class="tags-list-container">
+            <mat-chip-list>
+              <mat-chip *ngFor="let tag of tags" (click)="toggleTag(tag)" [class.mat-chip-selected]="selectedTags.includes(tag)">
+                {{tag.name}}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="9" rowspan="1">
+        <router-outlet></router-outlet>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+</div>
