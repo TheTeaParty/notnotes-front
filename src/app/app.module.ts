@@ -22,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
 import { EditComponent } from './edit/edit.component';
+import { MentionModule } from 'angular-mentions';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { EditComponent } from './edit/edit.component';
     HttpClientModule,
     MatInputModule,
     FormsModule,
-    MatChipsModule
+    MatChipsModule,
+    MentionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

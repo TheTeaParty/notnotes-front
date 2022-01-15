@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { CreateOrUpdateNote } from '../models/create-or-update-note';
+import { Event } from '../models/event';
 import { Note } from '../models/note';
 import { Tag } from '../models/tag';
 
@@ -22,6 +23,57 @@ export class ApiService extends BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * Path part for operation getEvents
+   */
+  static readonly GetEventsPath = '/events';
+
+  /**
+   * Get Events.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getEvents()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getEvents$Response(params?: {
+  }): Observable<StrictHttpResponse<Array<Event>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ApiService.GetEventsPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Event>>;
+      })
+    );
+  }
+
+  /**
+   * Get Events.
+   *
+   *
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getEvents$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getEvents(params?: {
+  }): Observable<Array<Event>> {
+
+    return this.getEvents$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<Event>>) => r.body as Array<Event>)
+    );
   }
 
   /**

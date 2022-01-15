@@ -4,9 +4,16 @@
        [innerHTML]="editableNote.name"
        class="title mat-h1">
   </div>
-  <div
-    (input)="onContentChange($any($event.target).innerHTML)"
-    [innerHTML]="editableNote.content"
-    contenteditable class="content">
+  <div class="content">
+    <div class="input"
+      [mention]="tags"
+      [mentionConfig]="mentionConfig"
+      (input)="onContentChange($any($event.target).innerHTML)"
+      (keyup)="styleTag($event)"
+       [innerHTML]="content"
+      contenteditable >
+    </div>
+    <div [innerHTML]="editableNote.content" class="below">
+    </div>
   </div>
 </div>

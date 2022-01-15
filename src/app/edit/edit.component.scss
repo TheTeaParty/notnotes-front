@@ -16,9 +16,39 @@
     flex: 1;
     padding: 13px;
     cursor: text;
+    position: relative;
   }
 }
 
 [contenteditable] {
   outline: 0px solid transparent;
+}
+
+.input {
+  z-index: 1;
+  color: transparent;
+  -webkit-user-select: auto;
+  background-color: transparent;
+  width: 100%;
+  overflow-wrap: break-word;
+  position: absolute;
+  top: 13px;
+  bottom: 13px;
+  left: 13px;
+  right: 13px;
+  caret-color: black;
+}
+
+.below {
+  z-index: -1;
+  white-space: pre-wrap;
+  width: 100%;
+  overflow: auto;
+  overflow-wrap: break-word;
+  position: absolute;
+  top: 13px;
+  bottom: 13px;
+  left: 13px;
+  right: 13px;
+
 }

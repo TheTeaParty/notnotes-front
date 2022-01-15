@@ -36,6 +36,8 @@
     .tags-list-container {
       height: 120px;
       padding: 15px;
+      overflow-y: auto;
+
     }
   }
 }

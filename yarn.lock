@@ -1689,6 +1689,13 @@ ajv@^6.12.4, ajv@^6.12.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+angular-mentions@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/angular-mentions/-/angular-mentions-1.4.0.tgz#66cc0459b6767b2f3f90b5f3bbca2589801093ea"
+  integrity sha512-4rXnh6Npdbll1cFcDWw07QHJzM2SLsTb9VI2mNcI0lOz5k//v7bCQpw0Pn2D/NN54gmFKZk/xhBiaWRWM27Qeg==
+  dependencies:
+    tslib "^2.0.0"
+
 ansi-colors@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"

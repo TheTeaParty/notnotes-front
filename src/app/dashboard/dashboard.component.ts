@@ -3,6 +3,8 @@ import {ApiService} from '../api/services/api.service';
 import {Note} from '../api/models/note';
 import {Tag} from '../api/models/tag';
 import {ActivatedRoute, Router} from '@angular/router';
+import {webSocket} from 'rxjs/webSocket';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,6 +31,13 @@ export class DashboardComponent implements OnInit {
 
     this.activatedRoute.paramMap.subscribe(params => {
       this.currentNoteID = params.get('noteID');
+    })
+
+    const subject = webSocket(environment.ws);
+
+    subject.subscribe((data: any) => {
+      this.getNotes(this.searchName, this.selectedTags);
+      this.getTags();
     })
   }
 
