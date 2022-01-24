@@ -23,6 +23,10 @@ import {FormsModule} from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
 import { EditComponent } from './edit/edit.component';
 import { MentionModule } from 'angular-mentions';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { reducers, metaReducers } from './store/reducers';
+import * as fromNote from './store/notes/reducers/note.reducer';
+import { NoteEffects } from './store/notes/effects/note.effects';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,17 @@ import { MentionModule } from 'angular-mentions';
     MatInputModule,
     FormsModule,
     MatChipsModule,
-    MentionModule
+    MentionModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: true,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreModule.forFeature(fromNote.noteFeatureKey, fromNote.reducer),
+    EffectsModule.forFeature([NoteEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

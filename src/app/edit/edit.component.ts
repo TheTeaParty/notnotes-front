@@ -67,7 +67,7 @@ export class EditComponent implements OnInit {
     });
 
     this.editableNote.content = content;
-    
+
     this.debouncer.next({...this.editableNote, content});
   }
 
